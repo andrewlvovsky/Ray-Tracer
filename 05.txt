@@ -1,0 +1,9 @@
+size 640 480
+color white 1 1 1
+color black 0 0 0
+phong_shader shader black white black 50
+plane - 0 -1 0 0 1 0 shader
+point_light 0 1 6 white 200
+enable_shadows 0
+recursion_depth_limit 1
+camera 0 1 6 0 0 0 0 1 0 70

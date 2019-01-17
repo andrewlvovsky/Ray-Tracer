@@ -1,0 +1,16 @@
+size 640 480
+color red 1 0 0
+color green 0 1 0
+color blue .2 .2 .8
+color white 1 1 1
+flat_shader red_shader red
+flat_shader blue_shader blue
+flat_shader green_shader green
+flat_shader white_shader white
+sphere - 0 0 0 .5 white_shader
+sphere - 1 0 0 .5 red_shader
+sphere - 0 1 0 .5 green_shader
+sphere - 0 0 1 .5 blue_shader
+enable_shadows 0
+recursion_depth_limit 1
+camera 0 4 4 0 1 0 1 1 0 70

@@ -1,0 +1,23 @@
+size 640 480
+color red 1 0 0
+color blue .2 .2 .8
+color yellow 1 0.775 0.5431
+color white 1 1 1
+color black 0 0 0
+phong_shader red_shader red red white 50
+phong_shader blue_shader blue blue white 50
+phong_shader yellow_shader yellow yellow white 50
+phong_shader white_shader white white white 50
+reflective_shader reflectr red_shader .8
+reflective_shader reflectb blue_shader .4
+plane - -1 0 0 1 0 0 reflectr
+plane - 1 0 0 -1 0 0 reflectr
+plane - 0 -1 0 0 1 0 reflectb
+plane - 0 1 0 0 -1 0 reflectb
+plane - 0 0 -10 0 0 1 blue_shader
+sphere - 0 0 -8 .8 white_shader
+point_light .8 .8 4 white 100
+ambient_light white .3
+enable_shadows 1
+recursion_depth_limit 2
+camera 0.02 0.01 4 0 0 0 0 1 0 70

@@ -1,0 +1,19 @@
+size 640 480
+color red 1 0 0
+color green 0 1 0
+color blue .2 .2 .8
+color white 1 1 1
+color gray .5 .5 .5
+phong_shader red_shader red red white 50
+phong_shader blue_shader blue blue white 50
+phong_shader green_shader green green white 50
+phong_shader white_shader white white white 50
+phong_shader gray_shader gray gray white 50
+plane - -1 -1 0 0 1 0 gray_shader
+plane - -1 -1 0 1 0 0 red_shader
+point_light 0 0 0 white 20
+sphere - 0 0 0 .1 red_shader
+ambient_light white .3
+enable_shadows 1
+recursion_depth_limit 1
+camera 0 1 6 0 0 0 0 1 0 70
