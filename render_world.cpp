@@ -23,7 +23,7 @@ Render_World::~Render_World()
 Hit Render_World::Closest_Intersection(const Ray& ray)
 {
     Hit closest_hit;
-    double min_t = std::numeric_limits.max();
+    double min_t = std::numeric_limits<double>::max();
 
     for (auto object : objects) {
         Hit hit = object->Intersection(ray, 0); // Not currently using meshes, so part set to 0
@@ -40,8 +40,8 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
 void Render_World::Render_Pixel(const ivec2& pixel_index)
 {
     Ray ray;
-    ray.end_point = camera.position;
-    ray.direction = (camera.position - World_Position(pixel_index)).normalized();
+    ray.endpoint = camera.position;
+    ray.direction = (camera.position - camera.World_Position(pixel_index)).normalized();
     vec3 color=Cast_Ray(ray,1);
     camera.Set_Pixel(pixel_index,Pixel_Color(color));
 }
@@ -65,7 +65,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 
     if(closest_hit.object) {
         vec3 intersection_point = ray.Point(closest_hit.dist);
-        color = closest_hit.object->material_shader->Shade_Surface(ray, intersection_point, closest_hit.object->Normal(intersection_point), recursion_depth);
+        color = closest_hit.object->material_shader->Shade_Surface(ray, intersection_point, closest_hit.object->Normal(intersection_point, 0), recursion_depth);
     }
     else {
         color = background_shader->Shade_Surface(ray, ray.direction, ray.direction, recursion_depth);
