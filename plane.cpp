@@ -12,7 +12,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
     double t;
 
     if (u_dot_n != 0) { // if the ray is not parallel with the plane, intersect
-    	t = dot((ray.endpoint - x1), normal) / u_dot_n;
+    	t = dot((x1 - ray.endpoint), normal) / u_dot_n;
     	if (t > 0)
     	    return {this, t, part};
     	else
