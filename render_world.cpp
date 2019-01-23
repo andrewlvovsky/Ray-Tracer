@@ -4,6 +4,9 @@
 #include "light.h"
 #include "ray.h"
 
+//#include <iostream>
+//using namespace std;
+
 extern bool disable_hierarchy;
 
 Render_World::Render_World()
@@ -23,6 +26,7 @@ Render_World::~Render_World()
 Hit Render_World::Closest_Intersection(const Ray& ray)
 {
     Hit closest_hit;
+    closest_hit = {nullptr, 0, 0};
     double min_t = std::numeric_limits<double>::max();
 
     for (auto object : objects) {
