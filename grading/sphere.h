@@ -2,6 +2,9 @@
 #define __SPHERE_H__
 
 #include "object.h"
+
+#include <cmath>
+
 class Sphere : public Object
 {
     vec3 center;
