@@ -1,3 +1,4 @@
+#include <MacTypes.h>
 #include <algorithm>
 #include "light.h"
 #include "phong_shader.h"

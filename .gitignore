@@ -5,7 +5,6 @@
 *.slo
 *.lo
 *.o
-*.obj
 
 # Precompiled Headers
 *.gch
@@ -30,8 +29,3 @@
 *.exe
 *.out
 *.app
-
-# Project specific
-grading/*
-ray_tracer
-.sconsign.dblite
