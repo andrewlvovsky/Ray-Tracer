@@ -1,4 +1,5 @@
 #include <MacTypes.h>
+#include <algorithm>
 #include "light.h"
 #include "phong_shader.h"
 #include "ray.h"
@@ -23,28 +24,28 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 
     for (auto light : world.lights) {
         vec3 l = light->position - intersection_point;  // light ray
-        vec3 r = -l + 2 * dot(l, normal) * normal;  //reflection ray
+        vec3 r = -l + 2.0 * dot(l, normal) * normal;  //reflection ray
 
         if(world.enable_shadows) {
             Ray shadow_ray(intersection_point, l);
             Hit shadow_hit = world.Closest_Intersection(shadow_ray);
             if(!shadow_hit.object || shadow_hit.dist > l.magnitude()) {
                 diffuse = this->color_diffuse * light->Emitted_Light(l);
-                diffuse *= fmax(dot(normal, l.normalized()), 0.0);
+                diffuse *= std::max(dot(normal, l.normalized()), 0.0);
                 color += diffuse;
 
                 specular = this->color_specular * light->Emitted_Light(l);
-                specular *= pow(fmax(dot(-ray.direction, r.normalized()), 0.0), specular_power);
+                specular *= pow(std::max(dot(-ray.direction, r.normalized()), 0.0), specular_power);
                 color += specular;
             }
         }
         else {
             diffuse = this->color_diffuse * light->Emitted_Light(l);
-            diffuse *= fmax(dot(normal, l.normalized()), 0.0);
+            diffuse *= std::max(dot(normal, l.normalized()), 0.0);
             color += diffuse;
 
             specular = this->color_specular * light->Emitted_Light(l);
-            specular *= pow(fmax(dot(-ray.direction, r.normalized()), 0.0), specular_power);
+            specular *= pow(std::max(dot(-ray.direction, r.normalized()), 0.0), specular_power);
             color += specular;
         }
     }
